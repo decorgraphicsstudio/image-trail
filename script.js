@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const img = document.createElement("img");
         img.src = `/img${imgindex}.jpg`;
+        img.alt = 'Dynamic Image';
         newItem.appendChild(img);
         imgindex = (imgindex % 15) + 1;  // Correcting the variable name here
 
