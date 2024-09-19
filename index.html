@@ -1,15 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Motion Trail Effect</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://unpkg.com/sheryjs/dist/Shery.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
+
 <body>
-    <div class="items"></div>
-    <h2>Move Your Mouse<br>TO Explore</h2>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/gsap.min.js"></script>
+    <nav>
+        <div class="left">
+            <h5 class="nlink magnet">HASAN RAZA</h5>
+        </div>
+        <div class="center">
+            <a href="#first"><h5 class="nlink">Home</h5></a>
+            <a href="#second"><h5 class="nlink">Gallery</h5></a>
+            <h5 class="nlink">Pricing</h5>
+            <h5 class="nlink">Products</h5>
+        </div>
+        <div class="right">
+            <h5 class="nlink magnet">Our Journery</h5>
+        </div>
+    </nav>
+    <div id="first" class="first">
+        <video src="./video.mp4" class="main-video" autoplay muted loop></video>
+        <div class="items"></div>
+        <div class="main-text-box magnet">
+            <h2 class="text">Move Your Mouse<br>TO Explore</h2>
+        </div>
+        <a href="#second" class="r_b_box hover-target">    
+            <i class="bi bi-arrow-down-circle"></i> 
+            <p>Visit Our Gallary</p>
+        </a>
+    </div>
+    <div id="second" class="second">
+        <h2>Gallery</h2>
+        <div class="gallery_show">
+            <hr>
+            <div class="gallery_elem">
+                <h3>TREE</h3><h3>HASAN RAZA</h3><h3>2021</h3>
+            </div>
+            <hr>
+            <div class="gallery_elem">
+                <h3>TREE</h3><h3>HASAN RAZA</h3><h3>2021</h3>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.155.0/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/automat/controlkit.js@master/bin/controlKit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"
+        integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"
+        integrity="sha512-onMTRKJBKz8M1TnqqDuGBlowlH0ohFzMXYRNebz+yOcc5TQr/zAKsthzhuv0hiyUKEiQEQXEynnXCvNTOk50dg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script  type="text/javascript"  src="https://unpkg.com/sheryjs/dist/Shery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="script.js"></script>
 </body>
+
 </html>
