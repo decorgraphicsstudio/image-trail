@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .center-1 {}
+
+        .parent-box-1 {
+            animation: bottomAnim 1s linear forwards reverse;
+            animation-delay: 1s;
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%) rotate(45deg);
+        }
+
+        .parent-box-2 {
+            animation: topAnim 1s linear forwards reverse;
+            animation-delay: 1s;
+            position: absolute;
+            left: 50%;
+            top: 0;
+            transform: translateX(-50%) rotate(225deg);
+        }
+
+        @keyframes bottomAnim {
+            to {
+                bottom: 180%;
+            }
+        }
+
+        @keyframes topAnim {
+            to {
+                top: 180%;
+            }
+        }
+    </style>
+</head>
+
+<body style="--theme: 'black';">
+    <div class="preloader absolute top-0 left-0 w-full h-screen overflow-hidden">
+        <div class="parent-box-1 w-full h-screen">
+            <div class="dabba absolute top-1/2 -translate-y-1/2 right-1/2 w-[90vw] h-[300vh] bg-zinc-900"></div>
+        </div>
+        <div class="parent-box-2 w-full h-screen">
+            <div class="dabba absolute top-1/2 -translate-y-1/2 right-1/2 w-[90vw] h-[300vh] bg-zinc-900"></div>
+        </div>
+    </div>
+</body>
+
+</html>

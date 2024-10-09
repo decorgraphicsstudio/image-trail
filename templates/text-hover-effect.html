@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Antonio:wght@100..700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Rubik+Mono+One&display=swap');
+
+        h1 {
+            font-family: "Antonio", sans-serif !important;
+            height: auto;
+        }
+
+        .parent-text {
+            overflow: hidden;
+            height: 5vw;
+        }
+    </style>
+</head>
+
+<body class="bg-zinc-900 flex justify-center items-center h-screen">
+    <div class="parent-text">
+        <h1 class="text-hover uppercase text-[4vw] text-white flex">Home</h1>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"
+        integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script>
+        let parentText = document.querySelector(".parent-text");
+        let textElement = document.querySelector(".text-hover");
+        let text = textElement.textContent;
+        textElement.textContent = "";
+        text.split("").forEach(letter => {
+            textElement.innerHTML += `<div>${letter}</div>`;
+        });
+
+        let dupText = textElement.cloneNode();
+        dupText.innerHTML = textElement.innerHTML;
+
+        parentText.appendChild(dupText);
+
+        parentText.addEventListener("mouseenter", function () {
+            gsap.to(".text-hover > div, .text-hover-dup > div", {
+                y: -100,
+                stagger: .1,
+                duration: .5
+            })
+        })
+        parentText.addEventListener("mouseleave", function () {
+            gsap.to(".text-hover > div, .text-hover-dup > div", {
+                y: 0,
+                stagger:.1,
+                duration:.5
+            })
+        })
+    </script>
+</body>
+
+</html>

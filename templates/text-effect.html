@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Antonio:wght@100..700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Rubik+Mono+One&display=swap');
+
+        h1 {
+            font-family: "Rubik Mono One", monospace;
+            position: relative;
+        }
+        h1::after {
+            content: var(--content);
+            position: absolute;
+            top: 0;
+            left: 0;
+            color: transparent;
+            z-index: 99;
+            -webkit-text-stroke: 4px #DDD2C3;
+        }
+    </style>
+</head>
+
+<body class="flex justify-center h-screen items-center bg-[#DDD2C3] flex-col">
+    <h1 class="text-[7vmax] text-center leading-tight text-[#F5A833]" style="--content: 'Webdeveloper';">Webdeveloper</h1>
+    <h1 class="text-[7vmax] text-center leading-tight text-[#F5A833]" style="--content: '&Designer';">&Designer</h1>
+
+    <img class="absolute bottom-0 left-1/2 -translate-x-1/2 h-[30vmax]" src="../Open Peeps - Bust.png" alt="">
+</body>
+
+</html>
