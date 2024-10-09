@@ -28,26 +28,32 @@
         body {
             overflow-x: hidden;
             overflow-y: auto;
-            min-height: 100%;
+            min-height: 90vh;
             font-family: "Antonio", sans-serif !important;
-            color: #202020 !important;
-            background-color: rgb(221, 210, 195);
+            color: #0C0519 !important;
+            background-color: #FEFAE0;
         }
 
         .contant {
             opacity: 0;
             scale: 0.5;
+            height: 90vh;
         }
 
         .navbar {
-            z-index: 1;
+            z-index: 999;
+            background: #ffffff00;
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            border: 1px solid #ffffff4d;
+            height: 10vh;
         }
 
         #counter {
             font-size: 150px;
             font-weight: 800;
             font-family: "Rubik Mono One", monospace;
-            color: #dfdfdf;
+            color: #BC6C25;
         }
 
         .box {
@@ -62,7 +68,7 @@
         .box1 {
             width: 100vw;
             height: 50%;
-            background-color: #202020;
+            background-color: #0C0519;
             position: absolute;
             top: 0;
             left: 0;
@@ -71,7 +77,7 @@
         .box2 {
             width: 100vw;
             height: 50%;
-            background-color: #202020;
+            background-color: #0C0519;
             position: absolute;
             bottom: 0;
             left: 0;
@@ -95,7 +101,7 @@
 
         .center-me {
             position: absolute;
-            top: 0;
+            bottom: 0;
             left: 0;
             width: 100%;
             height: 100%;
@@ -119,10 +125,7 @@
             height: 70%;
             object-fit: contain;
             transition: all 0.3s ease;
-        }
-
-        .image .image2 {
-            opacity: 0;
+            z-index: 1;
         }
 
         .head-text {
@@ -130,12 +133,12 @@
             font-size: 7vmax;
             letter-spacing: 1px;
             line-height: 8rem;
-            color: #f5a834;
+            color: #BC6C25;
             position: relative;
         }
 
         .main-color {
-            color: #f5a834 !important;
+            color: #BC6C25 !important;
         }
 
         .glass-card {
@@ -187,7 +190,7 @@
         }
 
         .hello-ico {
-            filter: drop-shadow(0px 0px 8px #202020);
+            filter: drop-shadow(0px 0px 8px #0C0519);
         }
     </style>
 </head>
@@ -223,18 +226,17 @@
                 </div>
             </div>
         </nav>
-        <div class="container py-2">
+        <div class="container contant py-2">
             <div class="heading d-flex flex-column justify-content-center">
                 <h1 class="fs-3 fw-light text-center z-3 my-4 py-2"><span class="fs-1 hello-ico magnet">👋</span>, my
                     name
                     is <span class="hasan magnet fs-1">Hasan
                         Raza</span> and I am a <span class="hasan fs-1">Freelancer</span></h1>
-                <h1 class="head-text text-center">Webdeveloper</h1>
-                <h1 class="head-text text-center">&Designer</h1>
+                <h1 class="head-text text-center" style="--content: 'Webdeveloper';">Webdeveloper</h1>
+                <h1 class="head-text text-center" style="--content: '&Designer';">&Designer</h1>
                 <div class="center-me">
                     <div class="image">
-                        <img class="image1" src="./Open Peeps - Bust.png" alt="">
-                        <img class="image2" src="./hasan.png" alt="">
+                        <img src="./hasan.png" alt="">
                     </div>
                 </div>
                 <div class="myCard glass-card rounded-4 p-4 layer shadow-sm" style="transform: rotate(-15deg);">
@@ -282,6 +284,7 @@
             var interval = setInterval(function () {
                 if (progress < 100) {
                     progress += 100 / intervalSteps; // Increment based on the total loading time
+                    progress = Math.min(progress, 100);
                     counter.innerHTML = Math.round(progress) + '%'; // Round the progress to nearest integer
                 } else {
                     clearInterval(interval); // Stop counting at 100%
@@ -353,20 +356,6 @@
             skew: true,
             ease: "cubic-bezier(0.23, 1, 0.320, 1)",
             duration: 0.3,
-        });
-
-        const image1 = document.querySelector('.image1');
-        const image2 = document.querySelector('.image2');
-
-        // Add hover effect using GSAP
-        document.querySelector('.image').addEventListener('mouseenter', () => {
-            gsap.to(image1, { duration: 0.5, opacity: 0, ease: "power4.out" });
-            gsap.to(image2, { duration: 0.5, opacity: 1, ease: "power4.out" });
-        });
-
-        document.querySelector('.image').addEventListener('mouseleave', () => {
-            gsap.to(image1, { duration: 0.5, opacity: 1, ease: "power4.out" });
-            gsap.to(image2, { duration: 0.5, opacity: 0, ease: "power4.out" });
         });
 
         Shery.makeMagnet(".magnet");
