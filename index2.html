@@ -49,6 +49,14 @@
             height: 10vh;
         }
 
+        .link_text {
+            display: inline-block !important;
+        }
+
+        .link_text span {
+            display: inline-block !important;
+        }
+
         #counter {
             font-size: 150px;
             font-weight: 800;
@@ -126,6 +134,20 @@
             object-fit: contain;
             transition: all 0.3s ease;
             z-index: 1;
+            cursor: none;
+            filter: drop-shadow(0 0 10px #FEFAE0);
+        }
+
+        .mask {
+            position: initial;
+        }
+
+        .circle {
+            background-color: #BC6C25 !important;
+            font-family: "Caveat", cursive;
+            font-size: 1.3rem;
+            font-weight: 700;
+            filter: drop-shadow(0 0 2px #FEFAE0);
         }
 
         .head-text {
@@ -134,6 +156,19 @@
             letter-spacing: 1px;
             line-height: 8rem;
             color: #BC6C25;
+            position: relative;
+        }
+        .head-text {
+            font-family: "Rubik Mono One", monospace;
+            font-size: 7vmax;
+            letter-spacing: 1px;
+            line-height: 8rem;
+            color: #BC6C25;
+            position: relative;
+        }
+
+        .text_media {
+            cursor: none;
             position: relative;
         }
 
@@ -154,6 +189,7 @@
             overflow: hidden;
             transform-origin: center center;
             transition: all 0.2s linear;
+            z-index: 2;
         }
 
         .glass-card .body-card {
@@ -170,7 +206,7 @@
             width: 200px;
             position: absolute;
             bottom: 18%;
-            right: 15%;
+            right: 13%;
             background: #ffffff33;
             backdrop-filter: blur(4px);
             -webkit-backdrop-filter: blur(4px);
@@ -178,6 +214,7 @@
             overflow: hidden;
             transform-origin: center center;
             transition: all 0.2s linear;
+            z-index: 2;
         }
 
         .glass-card2 .body-card {
@@ -220,7 +257,10 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active fw-bold fs-4" aria-current="page" href="#">Home</a>
+                            <a class="nav-link link_text active mx-2 fw-bold fs-4" aria-current="page" href="#">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link link_text active mx-2 fw-bold fs-4" aria-current="page" href="#">About</a>
                         </li>
                     </ul>
                 </div>
@@ -230,13 +270,13 @@
             <div class="heading d-flex flex-column justify-content-center">
                 <h1 class="fs-3 fw-light text-center z-3 my-4 py-2"><span class="fs-1 hello-ico magnet">👋</span>, my
                     name
-                    is <span class="hasan magnet fs-1">Hasan
+                    is <span class="hasan fs-1 magnet">Hasan
                         Raza</span> and I am a <span class="hasan fs-1">Freelancer</span></h1>
                 <h1 class="head-text text-center" style="--content: 'Webdeveloper';">Webdeveloper</h1>
                 <h1 class="head-text text-center" style="--content: '&Designer';">&Designer</h1>
                 <div class="center-me">
                     <div class="image">
-                        <img src="./hasan.png" alt="">
+                        <img class="text_media" src="./Open Peeps - Bust.png" alt="">
                     </div>
                 </div>
                 <div class="myCard glass-card rounded-4 p-4 layer shadow-sm" style="transform: rotate(-15deg);">
@@ -268,6 +308,7 @@
         integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
         crossorigin="anonymous"></script>
     <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/TextPlugin.min.js"></script>
     <script>
         var startTime = Date.now(); // Start time before the load event
 
@@ -275,29 +316,30 @@
             var preloader = document.getElementById('preloader');
             var counter = document.getElementById('counter');
             var progress = 0;
+            var startTime = Date.now();
             var initialDelay = 1000; // Delay before starting the counter (in milliseconds)
-            var totalTime = Math.max(1000, Date.now() - startTime + initialDelay); // Calculate loading time or minimum 1 second
-            var intervalDuration = 10; // Duration of each increment
-            var intervalSteps = totalTime / intervalDuration; // Total increments based on total loading time
+            var totalTime = Math.max(1000, Date.now() - startTime + initialDelay); // Calculate total time including initial delay
+            var intervalDuration = 10; // Duration of each increment (in milliseconds)
+            var progressPerStep = 100 / (totalTime / intervalDuration); // Calculate how much progress increases per step
 
             // Counter interval to simulate loading progress
             var interval = setInterval(function () {
                 if (progress < 100) {
-                    progress += 100 / intervalSteps; // Increment based on the total loading time
-                    progress = Math.min(progress, 100);
-                    counter.innerHTML = Math.round(progress) + '%'; // Round the progress to nearest integer
-                } else {
-                    clearInterval(interval); // Stop counting at 100%
+                    progress += progressPerStep; // Increment progress
+                    progress = Math.min(progress, 100); // Ensure progress does not exceed 100
+                    counter.innerHTML = Math.round(progress) + '%'; // Display rounded progress
                 }
             }, intervalDuration);
 
-            // Ensure preloader hides after minimum loading time
+            // Ensure preloader hides and animations start after the loading is complete
             setTimeout(function () {
+                progress = 100; // Ensure the counter reaches exactly 100
+                counter.innerHTML = '100%'; // Set the final value to 100%
                 clearInterval(interval); // Clear the interval
 
-                // Start GSAP animations once loading is complete
-                startGSAPAnimations();
-            }, totalTime);  // Minimum loading time
+                startGSAPAnimations(); // Start GSAP animations or other actions
+            }, totalTime);  // Wait until totalTime is reached
+
 
             function startGSAPAnimations() {
                 gsap.to(".box1", {
@@ -359,6 +401,94 @@
         });
 
         Shery.makeMagnet(".magnet");
+
+        Shery.imageMasker(".text_media" /* Element to target.*/, {
+            //Parameters are optional.
+            mouseFollower: true,
+            text: "Hasan",
+            ease: "cubic-bezier(0.23, 1, 0.320, 1)",
+            duration: 1,
+        });
+
+        // Anchor element ko select karte hain
+        let links = document.querySelectorAll(".link_text");
+
+        links.forEach(function (link) {
+            // Text ko span tags me wrap kar rahe hain
+            let letters = link.textContent.split(""); // Split the text into individual letters
+            link.innerHTML = ""; // Empty the link's content
+
+            letters.forEach(letter => {
+                let span = document.createElement('span'); // Create a span element for each letter
+                span.textContent = letter; // Set the letter as the span's content
+                link.appendChild(span); // Append the span to the link
+            });
+
+            // Ab animation add kar rahe hain
+            let spans = link.querySelectorAll('span'); // Get all the span elements
+
+            // Event listener for mouse hover
+            link.addEventListener("mouseenter", function () {
+                // Clone each span and apply the animation
+                spans.forEach(span => {
+                    // Clone the current span
+                    let clone = span.cloneNode(true);
+                    clone.classList.add("clone_text"); // Add a class to easily identify clones
+                    clone.style.position = "absolute";
+                    clone.style.top = span.offsetTop + "px"; // Position clone at the same top position
+                    clone.style.left = span.offsetLeft + "px"; // Position clone at the same left position
+                    clone.style.color = "#BC6C25"; // Different color for clone
+                    clone.style.opacity = 0; // Initially invisible
+                    link.appendChild(clone); // Append clone to the link
+
+                    let clones = link.querySelectorAll('.clone_text'); // Get all the cloned spans
+
+                    // Animate the original span upwards with stagger
+                    gsap.to(spans, {
+                        y: -50, // Move original letter upwards
+                        opacity: 0,
+                        duration: 0.5, // Shorter duration for a snappier effect
+                        ease: "power4.inOut",
+                        stagger: 0.1 // Stagger each letter upwards by 0.1 seconds
+                    });
+
+                    // Animate the clone span from below to replace the original with stagger
+                    gsap.fromTo(clones, {
+                        y: 50, // Start from below the original
+                        opacity: 0, // Initially hidden
+                    }, {
+                        y: 0, // Move to the original position
+                        opacity: 1, // Make visible
+                        duration: 0.5, // Shorter duration for a snappier effect
+                        ease: "power4.inOut",
+                        stagger: 0.1 // Stagger each clone's appearance by 0.1 seconds
+                    });
+                });
+            });
+            // Event listener for mouse leave
+            link.addEventListener("mouseleave", function () {
+                // Move the original spans back to their original position with stagger
+                gsap.to(spans, {
+                    y: 0, // Move original letters back to original position
+                    opacity: 1, // Make them fully visible
+                    duration: 0.5, // Shorter duration for a snappier effect
+                    ease: "power4.inOut",
+                    stagger: 0.1 // Stagger each letter downwards by 0.1 seconds
+                });
+
+                // Move the clones back down and remove them after animation with stagger
+                let clones = link.querySelectorAll('.clone_text'); // Get all the cloned spans
+                gsap.to(clones, {
+                    y: 50, // Move clones downwards
+                    opacity: 0, // Fade out the clones
+                    duration: 0.5, // Shorter duration for a snappier effect
+                    ease: "power4.inOut",
+                    stagger: 0.1, // Stagger each clone's disappearance by 0.1 seconds
+                    onComplete: () => clones.forEach(clone => clone.remove()) // Remove the clones after animation completes
+                });
+            });
+        });
+
 
         const cards = document.querySelectorAll('.myCard');
         cards.forEach(function (card) {
